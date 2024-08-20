@@ -1,5 +1,6 @@
 /database/config.php
 /node_modules
+/public/assets/img
 /public/build
 /public/hot
 /public/storage
