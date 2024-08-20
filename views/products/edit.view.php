@@ -17,13 +17,13 @@
                             <div class="col-span-full">
                                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
                                 <div class="mt-2">
-                                    <textarea
+                                    <input
                                             id="name"
                                             name="name"
-                                            rows="1"
+                                            value="<?= $product['name'] ?>"
                                             placeholder="Write here the name of the item..."
                                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    ><?= $product['name'] ?></textarea>
+                                    >
 
                                     <?php if(isset($errors['name'])) : ?>
                                     <p class="text-red-500 text-xs mt-2"><?= $errors['name']?></p>
@@ -45,13 +45,13 @@
                                 </div>
                                 <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price:</label>
                                 <div class="mt-2">
-                                    <textarea
+                                    <input
                                             id="price"
                                             name="price"
-                                            rows="1"
+                                            value="<?= $product['price'] ?>"
                                             placeholder="Write here the price of the item..."
                                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    ><?= $product['price'] ?></textarea>
+                                    >
 
                                     <?php if(isset($errors['price'])) : ?>
                                         <p class="text-red-500 text-xs mt-2"><?= $errors['price']?></p>

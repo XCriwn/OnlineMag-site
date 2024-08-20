@@ -85,6 +85,11 @@ class Validator{
             $errors['image'] = "Sorry, file is too large";
         }
 
+//TODO Check name size
+        if (strlen($_FILES["image"]["name"]) > 254 && $errors['image'] === NULL) {
+            $errors['image'] = "Sorry, file name is too large";
+        }
+
 //TODO Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" && $errors['image'] === NULL) {
@@ -98,7 +103,7 @@ class Validator{
 
     public static function addImage(){
         $target_dir = "assets/img/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $target_file = $target_dir . basename($_FILES["image"]["name"]) . time();
         $errors['image'] = NULL;
         // SAVE the image
         if($errors['image'] === NULL) if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
