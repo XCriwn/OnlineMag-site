@@ -1,0 +1,28 @@
+{
+    "name": "alexa/alex-course",
+    "authors": [
+        {
+            "name": "Stan Alex",
+            "email": "102477559+XCriwn@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^11.15",
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "core\\": "core/",
+            "Http\\": "Http/",
+            "database\\": "database/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.34"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
