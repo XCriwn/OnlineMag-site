@@ -37,8 +37,6 @@ $router->post('/manage', 'order/manage.php')->only('auth');
 $router->patch('/update_status', 'order/update_status.php')->only('auth');
 
 
-
-
 //$router->get('', '');
 
 

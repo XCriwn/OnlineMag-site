@@ -28,6 +28,7 @@
                                     </div>
                                     <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description:</label>
                                     <div class="mt-2">
+<!--                                        TODO!!! textarea into input-->
                                         <textarea
                                             id="description"
                                             name="description"

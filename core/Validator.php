@@ -10,6 +10,17 @@ class Validator{
         return !(strlen($value) > $min && strlen($value) < $max); // returns false if correct
     }
 
+    public static function isFloat($value) {
+        return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
+    }
+
+    public static function isFloatMinMax($value, $min = 0, $max = INF): bool
+    {
+        $value = trim($value);
+        if(!self::isFloat($value)) return false;
+        return ($value > $min && $value < $max); // returns false if wrong, true if ok
+    }
+
     public static function hasMinMaxNoSpecialChars($value, $min = 0, $max = INF){
         return !(self::hasSpecialChars($value) || self::notStringMinMax($value, $min, $max));
     }
