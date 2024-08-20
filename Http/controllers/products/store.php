@@ -18,7 +18,7 @@ if(Validator::notStringMinMax($_POST['description'], 0, 1000)){
     $errors['description'] = 'A body of no more than 1000 characters is required.';
 }
 //TODO: do not check string length, check for number between values instead
-if(Validator::isFloatMinMax($_POST['price'], 0, 999999999)){
+if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)){
     $errors['price'] = 'A price of no more than 1 million is required.';
 }
 
@@ -29,7 +29,7 @@ if (hasDuplicates($selectedCategories)) {
 
 $error = NULL;
 
-if(!empty($errors)){
+if(empty($errors)){
     $error = Validator::checkImage();
     if($error !== NULL){
         $errors['image'] = $error;

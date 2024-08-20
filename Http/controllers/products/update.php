@@ -31,8 +31,8 @@ if(Validator::notStringMinMax($_POST['name'], 0, 1000)){
 if(Validator::notStringMinMax($_POST['description'], 0, 1000)){
     $errors['description'] = 'A body of no more than 1000 characters is required.';
 }
-if(!Validator::priceIsValid($_POST['price'], 0, 10)){
-    $errors['price'] = 'Price is not valid.';
+if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)){
+    $errors['price'] = 'Price should be between 0 and 1 million.';
 }
 
 $selectedCategories = array_map('trim', explode(',', $_POST['selected_categories']));
@@ -41,7 +41,7 @@ if (hasDuplicates($selectedCategories)) {
 }
 
 //if no errors, update the record in the products database table
-if($_FILES["image"]["name"] !== ""){
+if($_FILES["image"]["name"] !== "" && empty($errors) ){
 
     $error = Validator::checkImage();
     if($error === NULL){
@@ -75,6 +75,7 @@ if(!empty($errors)){
         'errors' => $errors,
         'header' => 'Edit Product',
         'product' => $product,
+        'categories' => getAllCategories()
     ]);
     die();
 }
