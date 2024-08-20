@@ -29,10 +29,13 @@ if(!empty($_POST)){
     //todo we add a bit of query with just the where
     $query = $query . "WHERE ";
 
-    if(!empty($_POST['filter_name'])){
-        //todo for each $_post filter we add another bit of query and a bit of parameters
-        $query = $query . "product.name = :product_name " ;
-        $parameters["product_name"] = $_POST["filter_name"];
+    if (!empty($_POST['filter_name'])) {
+        // Modify the query to use LIKE instead of equals
+        $query = $query . "product.name LIKE :product_name ";
+
+        // Add wildcard characters to the parameter for pattern matching
+        $parameters["product_name"] = '%' . $_POST["filter_name"] . '%';
+
         $and = 1;
     }
 
