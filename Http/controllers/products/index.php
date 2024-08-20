@@ -39,7 +39,7 @@ if(!empty($_POST)){
     if(!empty($_POST['filter_price_min'])){
         //todo for each $_post filter we add another bit of query and a bit of parameters
         if($and === 1) {$query = $query . "AND ";}
-        $query = $query . "product.price > :product_price_min ";
+        $query = $query . "product.price >= :product_price_min ";
         $parameters["product_price_min"] = $_POST["filter_price_min"];
         $and = 1;
     }
@@ -47,7 +47,7 @@ if(!empty($_POST)){
     if(!empty($_POST['filter_price_max'])){
         //todo for each $_post filter we add another bit of query and a bit of parameters
         if($and === 1) {$query = $query . "AND ";}
-        $query = $query . "product.price < :product_price_max ";
+        $query = $query . "product.price <= :product_price_max ";
         $parameters["product_price_max"] = $_POST['filter_price_max'];
         $and = 1;
     }
