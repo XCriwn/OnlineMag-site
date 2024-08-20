@@ -86,6 +86,11 @@
                         See more...
                     </a>
                 </li>
+                <?php if(getCurrentUserRole() === 'admin') :?>
+                    <footer class="mt-6">
+                        <a href="product/edit?id=<?= $product['id'] ?>" class="text-green-300 text-xs mt-6 border border-current rounded px-4 py-2">Edit</a>
+                    </footer>
+                <?php endif; ?>
                 <br><hr><br>
             <?php endforeach; ?>
             </ul>
