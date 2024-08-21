@@ -2,7 +2,6 @@
 
 use database\Response;
 
-//TODO product stuff (img and category?)
 $currentUserId = getCurrentUserId();
 $db = \core\App::resolve(\database\Database::class);
 

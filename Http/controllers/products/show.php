@@ -3,7 +3,6 @@
 use database\Response;
 
 $db = \core\App::resolve(\database\Database::class);
-//TODO product stuff
 $currentUserId = getCurrentUserId();
 
 authorize(getCurrentUserRole() !== NULL && isset($_GET['id']));

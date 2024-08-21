@@ -1,8 +1,6 @@
-<!--//todo write here code to display all products currently in the cart-->
 <?php view('partials/head.php'); ?>
 <?php view('partials/nav.php', ['header' => $header]); ?>
 
-    <!--TODO product stuff-->
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
@@ -26,7 +24,6 @@
                     </li>
                     <br>
                     <li>Count: <?= $product['item_count']?></li> <br>
-                        <!--            TODO button to remove all counts of that object-->
                     <form action="/cart" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="id" value="<?= $product['id']?>">
@@ -53,7 +50,6 @@
             </ul>
             <?php if(!empty($products)) :?>
             <form action="/cart" method="post">
-<!--                TODO-->
                 <input type="hidden" name="order_id" value="<?= $order_id['id']?>">
                 <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >Submit Order</button>

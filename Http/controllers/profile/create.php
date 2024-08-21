@@ -2,7 +2,6 @@
 use database\Response;
 
 $db = \core\App::resolve(\database\Database::class);
-//TODO profile stuff
 
 $profile = $db->query("SELECT * FROM users WHERE id = :id", [
     'id'=>getCurrentUserId()

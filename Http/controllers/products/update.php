@@ -48,7 +48,6 @@ if($_FILES["image"]["name"] !== "" && empty($errors)) {
 
     $error = Validator::checkImage();
     if($error === NULL){
-        //TODO we have to delete the old photo
         $error = Validator::addImage();
         if($error === NULL){
 
@@ -84,14 +83,11 @@ if(!empty($errors)) {
 }
 
 $db->query("update product set name = :name, description = :description, price = :price where id = :id", [
-    //TODO uncomment this when done
     'name' => $_POST['name'],
     'description' => $_POST['description'],
     'price' => $_POST['price'],
     'id' => $_POST['id']
 ]);
-
-//todo alternative path: we delete through 1 sql command every product_category related to that product and we add the new categories again
 
 destroyCategories($_POST['id']);
 

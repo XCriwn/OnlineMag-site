@@ -3,12 +3,8 @@
 use database\Response;
 
 $db = \core\App::resolve(\database\Database::class);
-//TODO product stuff
 
 authorize(getCurrentUserRole() === 'admin');
-
-//todo we want to take from the database what categories we already have for this product id
-//todo and we want to put them in the selected-categories field
 
 $product = $db->query("SELECT 
 product.*, 

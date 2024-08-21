@@ -140,10 +140,6 @@ function hasOnlyDigits($str){
             'user_id' => getCurrentUserId()
         ])->find() ?? false;
     }
-//    function getCurrentOrderStatus(){
-//        $db = \core\App::resolve(\database\Database::class);
-//        //TODO
-//    }
 
 function hasDuplicates($array) {
     $counts = array_count_values($array);

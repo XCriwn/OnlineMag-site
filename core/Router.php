@@ -39,8 +39,6 @@ class Router{
         return $this;
     }
 
-    //TODO maybe a function like only but with all keys?
-
     public function route($uri, $method) {
         foreach($this->routes as $route) {
             if($route['uri'] === $uri && $route['method'] === strtoupper($method)) {

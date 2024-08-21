@@ -3,7 +3,6 @@
 use core\Validator;
 
 require base_path('core/Validator.php');
-//TODO product stuff + img and category
 $db = \core\App::resolve(\database\Database::class);
 
 $errors = [];

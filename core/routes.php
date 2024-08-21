@@ -1,6 +1,5 @@
 <?php
 
-//TODO replace note with product when its finished
 $router->get('/', 'index.php');
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
@@ -35,8 +34,4 @@ $router->get('/my_order', 'order/my_order.php')->only('auth');
 $router->get('/manage', 'order/manage.php')->only('auth');
 $router->post('/manage', 'order/manage.php')->only('auth');
 $router->patch('/update_status', 'order/update_status.php')->only('auth');
-
-
-//$router->get('', '');
-
 

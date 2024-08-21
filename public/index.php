@@ -13,13 +13,10 @@ $router = new \core\Router();
 
 $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
 
-//$method = isset($_POST['_method']) ? $_POST['method'] : $_SERVER['REQUEST_METHOD'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $routes = require base_path('core/routes.php');
 
-
-//routeToController($uri,$routes);
 try{
     $router->route($uri, $method);
 }catch(\core\ValidationException $exception){
@@ -31,12 +28,3 @@ try{
 
 
 \core\Session::unflash();
-
-
-
-/*
- * TODO GENERAL
- *  filter index products by category or price
- *  upload to github
- *  code review
- */

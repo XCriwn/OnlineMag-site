@@ -1,5 +1,4 @@
 <?php
-//todo manage orders as the admin
 
 authorize(getCurrentUserRole() === 'admin');
 
@@ -17,9 +16,6 @@ else{
     $query = $query . "o.status = 'PENDING' OR o.status = 'CANCELLED' OR o.status = 'COMPLETED'";
 }
 $orders = $db->query($query, $parameters)->findAll();
-
-//todo i want to take the user_id from order and find the user details associated with that user id
-
 
 view('order/manage.view.php', [
     'header' => 'Manage Orders',

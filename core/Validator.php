@@ -50,8 +50,6 @@ class Validator{
 
     public static function checkImage(): ?string
     {
-        //TODO image code goes here:
-
         if($_FILES["image"]["name"] === "") {
             return 'Please upload an image.';
         }
@@ -61,7 +59,7 @@ class Validator{
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $errors['image'] = NULL;
 
-//TODO Check if image file is a actual image or fake image
+//Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
             $check = getimagesize($_FILES["image"]["tmp_name"]);
             if($check === false) {
@@ -69,22 +67,22 @@ class Validator{
             }
         }
 
-//TODO Check if file already exists
-        if (file_exists($target_file) && $errors['image'] === NULL) {//TODO here we put errors
+//Check if file already exists
+        if (file_exists($target_file) && $errors['image'] === NULL) {
             $errors['image'] = "Sorry, file already exists.";
         }
 
-//TODO Check file size
+//Check file size
         if ($_FILES["image"]["size"] > 1000000 && $errors['image'] === NULL) {
             $errors['image'] = "Sorry, file is too large";
         }
 
-//TODO Check name size
+//Check name size
         if (strlen($_FILES["image"]["name"]) > 254 && $errors['image'] === NULL) {
             $errors['image'] = "Sorry, file name is too large";
         }
 
-//TODO Allow certain file formats
+//Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" && $errors['image'] === NULL) {
             $errors['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
@@ -92,7 +90,7 @@ class Validator{
 
         return $errors['image'];
 
-//TODO --end of image code--
+// --end of image code--
     }
 
     public static function addImage(): ?string

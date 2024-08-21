@@ -1,14 +1,8 @@
 <?php
-//todo write here code to get all products currently in the cart
-//todo if there's none, we should put a text saying there are none in view
 
 $db = \core\App::resolve(\database\Database::class);
-//todo we create a check / create for order id
 
-$order_id = getCurrentOrderId();//dd($order_id);//TODO WHEN CURRENT ORDER ID DOESNT EXIST WHAT THEN??
-
-//TODO check if the current $order_id is pointing towards an order that isn't INCOMPLETE anymore
-//todo if so, then create a new order and take the new order id
+$order_id = getCurrentOrderId();
 
 if($order_id === false) {
     createNewOrderId();

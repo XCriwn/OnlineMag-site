@@ -13,11 +13,6 @@ authorize(getCurrentUserId() !== null);
 
 $order_id = getCurrentOrderId();
 
-//todo if order does not exist, then we create a new order for that user_id
-
-//TODO check if the current $order_id is pointing towards an order that isn't INCOMPLETE anymore
-//todo if so, then create a new order and take the new order id
-
 if($order_id === false) {
     createNewOrderId();
     $order_id = getCurrentOrderId();
@@ -51,6 +46,5 @@ else {
         "order_id" => $order_id['id']
     ]);
 }
-
 
 redirect('/product?id=' . $_POST['id']);

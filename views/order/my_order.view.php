@@ -1,8 +1,6 @@
-<!--//todo write here code to display all products currently in the cart-->
 <?php view('partials/head.php'); ?>
 <?php view('partials/nav.php', ['header' => $header]); ?>
 
-<!--TODO product stuff-->
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <hr><br>
