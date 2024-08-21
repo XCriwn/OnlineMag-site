@@ -17,9 +17,8 @@ $product_count = $db->query("SELECT p.product_count, o.user_id FROM `order_produ
 authorize(getCurrentUserId() === $product_count['user_id']);
 
 justDump( $product_count['product_count']);
-//dd($_POST['quantity']);
 
-if($product_count['product_count'] - $_POST['quantity'] > 0){
+if($product_count['product_count'] - $_POST['quantity'] > 0) {
     //todo we need product_id, order_id, the count from form
     $db->query("UPDATE `order_products` SET `product_count` = :product_count WHERE product_id = :product_id AND order_id = :order_id", [
         "product_count" => $product_count['product_count'] - $_POST['quantity'],

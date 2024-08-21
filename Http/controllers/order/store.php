@@ -27,7 +27,7 @@ $status = $db->query("SELECT status FROM `order` WHERE id = :order_id", [
     "order_id" => $order_id['id']
 ])->find();
 
-if($status !== "INCOMPLETE"){
+if($status !== "INCOMPLETE") {
     createNewOrderId();
     $order_id = getCurrentOrderId();
 }
@@ -37,7 +37,7 @@ $item_exists = $db->query("SELECT product_count FROM `order_products` WHERE orde
     "order_id" => $order_id['id']
 ])->find();
 
-if($item_exists){
+if($item_exists) {
     $db->query("UPDATE `order_products` SET `product_count` = :product_count WHERE product_id = :product_id AND order_id = :order_id", [
         "product_count" => $item_exists['product_count'] + $_POST["quantity"],
         "product_id" => $_POST['id'],

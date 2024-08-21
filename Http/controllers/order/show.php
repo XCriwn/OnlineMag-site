@@ -21,12 +21,12 @@ $status = $db->query("SELECT user_id, status FROM `order` WHERE id = :order_id",
 
 authorize($status['user_id'] === getCurrentUserId());
 
-if($status !== "INCOMPLETE"){
+if($status !== "INCOMPLETE") {
     createNewOrderId();
     $order_id = getCurrentOrderId();
 }
 
-if($order_id !== false){
+if($order_id !== false) {
 
     $product = $db->query("SELECT 
     product.*, 
@@ -53,8 +53,6 @@ GROUP BY
 else{
     $product = [];
 }
-
-//dd($product);
 
 view('order/show.view.php', [
     'header' => 'Your Cart',

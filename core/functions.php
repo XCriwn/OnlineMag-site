@@ -44,13 +44,11 @@ function hasOnlyDigits($str){
     return preg_match('/^\d*$/', $str) === 1;
 }
 
-    function base_path($path)
-    {
+    function base_path($path) {
         return BASE_PATH . $path;
     }
 
-    function view($path, $attributes = [])
-    {
+    function view($path, $attributes = []) {
         extract($attributes);
 
         require base_path('views/' . $path);
@@ -61,39 +59,38 @@ function hasOnlyDigits($str){
         extract($attributes);
 
         require base_path('views/' . $path);
-
         exit();
     }
 
-    function redirect($path){
+    function redirect($path) {
         header("location: {$path}");
         exit();
     }
 
-    function old($key, $default = ''){
+    function old($key, $default = '') {
         return \core\Session::get('old')[$key] ?? $default ;
     }
 
-    function login($attributes = []){
+    function login($attributes = []) {
         \core\Authenticator::login($attributes);
     }
 
-    function getCurrentUserId(){
+    function getCurrentUserId() {
         return $_SESSION['user']['id'] ?? NULL;
     }
 
-    function getCurrentUserRole(){
+    function getCurrentUserRole() {
         return $_SESSION['user']['role'] ?? NULL;
     }
 
-    function getImage($value){
+    function getImage($value) {
         if(file_exists("assets/img/" . $value)){
             return "/assets/img/" . $value;
         }
         return "/assets/img/unknown.png";
     }
 
-    function destroyImage($query, $attributes){
+    function destroyImage($query, $attributes) {
         $db = \core\App::resolve(\database\Database::class);
 
         $image_pointer = $db->query($query, $attributes)->find();
@@ -105,7 +102,7 @@ function hasOnlyDigits($str){
 
     }
 
-    function destroyCategories($id){
+    function destroyCategories($id) {
         $db = \core\App::resolve(\database\Database::class);
         //delete everything related with our product's id from product_category
         $db->query("DELETE FROM product_categories WHERE product_id = :product_id", [
@@ -113,23 +110,25 @@ function hasOnlyDigits($str){
         ]);
     }
 
-    function getAllCategories(){
+    function getAllCategories() {
         $db = \core\App::resolve(\database\Database::class);
 
         return $db -> query("select id,name from categories")->findAll();
     }
 
-    function createNewOrderId(){
+    function createNewOrderId(): bool
+    {
         $db = \core\App::resolve(\database\Database::class);
-        if(getCurrentOrderId() === false){
-            $db->query("INSERT INTO `order` (`user_id`, `status`) VALUES (:user_id, 'INCOMPLETE')", [
-                "user_id" => getCurrentUserId()
-            ]);
-            return true;
-        } else return false;
+        if(getCurrentOrderId() !== false){
+            return false;
+        }
+        $db->query("INSERT INTO `order` (`user_id`, `status`) VALUES (:user_id, 'INCOMPLETE')", [
+            "user_id" => getCurrentUserId()
+        ]);
+        return true;
     }
 
-    function getCurrentOrderId(){
+    function getCurrentOrderId() {
         $db = \core\App::resolve(\database\Database::class);
         return $db->query("SELECT id FROM `order` WHERE user_id = :user_id AND status = 'INCOMPLETE'", [
             'user_id' => getCurrentUserId()

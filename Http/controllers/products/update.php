@@ -25,13 +25,13 @@ WHERE
 ])->findOrFail(Response::NOT_FOUND);
 
 //validate the form
-if(Validator::notStringMinMax($_POST['name'], 0, 1000)){
+if(Validator::notStringMinMax($_POST['name'], 0, 1000)) {
     $errors['name'] = 'A body of no more than 1000 characters is required.';
 }
-if(Validator::notStringMinMax($_POST['description'], 0, 1000)){
+if(Validator::notStringMinMax($_POST['description'], 0, 1000)) {
     $errors['description'] = 'A body of no more than 1000 characters is required.';
 }
-if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)){
+if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)) {
     $errors['price'] = 'Price should be between 0 and 1 million.';
 }
 
@@ -41,7 +41,7 @@ if (hasDuplicates($selectedCategories)) {
 }
 
 //if no errors, update the record in the products database table
-if($_FILES["image"]["name"] !== "" && empty($errors) ){
+if($_FILES["image"]["name"] !== "" && empty($errors)) {
 
     $error = Validator::checkImage();
     if($error === NULL){
@@ -69,7 +69,7 @@ if($_FILES["image"]["name"] !== "" && empty($errors) ){
 }
 
 
-if(!empty($errors)){
+if(!empty($errors)) {
 
     view('products/edit.view.php', [
         'errors' => $errors,

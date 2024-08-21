@@ -16,8 +16,7 @@
 
 */
 $db = \core\App::resolve(\database\Database::class);
-$order_id = $_POST['order_id'];//getCurrentOrderId();//
-//dd($order_id);
+$order_id = $_POST['order_id'];
 
 //TODO i dont need products, i just have to update the status of the order
 
@@ -28,5 +27,3 @@ $db->query("update `order` set status = 'PENDING' where id = :id AND user_id = :
 ]);
 
 redirect('/my_orders');
-
-//dd($product);

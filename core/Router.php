@@ -6,7 +6,7 @@ use core\middleware\Guest;
 class Router{
     protected $routes = [];
 
-    protected function add($uri, $controller, $method){
+    protected function add($uri, $controller, $method) {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
@@ -17,23 +17,23 @@ class Router{
         return $this;
     }
 
-    function get($uri, $controller){
+    function get($uri, $controller) {
         return $this->add($uri, $controller, 'GET');
     }
-    function post($uri, $controller){
+    function post($uri, $controller) {
         return $this->add($uri, $controller, 'POST');
     }
-    function delete($uri, $controller){
+    function delete($uri, $controller) {
         return $this->add($uri, $controller, 'DELETE');
     }
-    function put($uri, $controller){
+    function put($uri, $controller) {
         return $this->add($uri, $controller, 'PUT');
     }
-    function patch($uri, $controller){
+    function patch($uri, $controller) {
         return $this->add($uri, $controller, 'PATCH');
     }
 
-    public function only($key){
+    public function only($key) {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
 
         return $this;
@@ -41,8 +41,8 @@ class Router{
 
     //TODO maybe a function like only but with all keys?
 
-    public function route($uri, $method){
-        foreach($this->routes as $route){
+    public function route($uri, $method) {
+        foreach($this->routes as $route) {
             if($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
                 middleware\Middleware::resolve($route['middleware']);
 
@@ -52,7 +52,7 @@ class Router{
         abort();
     }
 
-    public function previousUrl(){
+    public function previousUrl() {
         return $_SERVER['HTTP_REFERER'];
     }
 }

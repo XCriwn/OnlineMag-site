@@ -8,17 +8,15 @@ $db = \core\App::resolve(\database\Database::class);
 
 $errors = [];
 
-//authorize the user
 authorize(getCurrentUserRole() === 'admin');
 
-if(Validator::notStringMinMax($_POST['name'], 0, 1000)){
+if(Validator::notStringMinMax($_POST['name'], 0, 1000)) {
     $errors['name'] = 'A body of no more than 1000 characters is required.';
 }
-if(Validator::notStringMinMax($_POST['description'], 0, 1000)){
+if(Validator::notStringMinMax($_POST['description'], 0, 1000)) {
     $errors['description'] = 'A body of no more than 1000 characters is required.';
 }
-//TODO: do not check string length, check for number between values instead
-if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)){
+if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)) {
     $errors['price'] = 'A price of no more than 1 million is required.';
 }
 
@@ -29,7 +27,7 @@ if (hasDuplicates($selectedCategories)) {
 
 $error = NULL;
 
-if(empty($errors)){
+if(empty($errors)) {
     $error = Validator::checkImage();
     if($error !== NULL){
         $errors['image'] = $error;
@@ -53,7 +51,6 @@ if(!empty($errors)){
 $db->query("INSERT INTO `product` (`name`, `description`, `price`, `image`) VALUES (
 :name, :description, :price, :image
 );", [
-    //TODO add image and category
     'name' => $_POST['name'],
     'description' => $_POST['description'],
     'price' => $_POST['price'],

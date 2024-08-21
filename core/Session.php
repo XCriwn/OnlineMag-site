@@ -4,23 +4,23 @@ namespace core;
 
 class Session
 {
-    public static function put($key, $value){
+    public static function put($key, $value) {
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key, $default=null){
+    public static function get($key, $default=null) {
         return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
 
-    public static function getArrayKey($key, $array_key, $default=null){
+    public static function getArrayKey($key, $array_key, $default=null) {
         return $_SESSION['_flash'][$key][$array_key] ?? $_SESSION[$key][$array_key] ?? $default;
     }
 
-    public static function has($key){
+    public static function has($key) {
         return (bool) static::get($key);
     }
 
-    public static function flash($key, $value){
+    public static function flash($key, $value) {
         $_SESSION['_flash'][$key] = $value;
     }
 

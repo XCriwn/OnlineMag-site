@@ -17,11 +17,11 @@ class ValidationException extends \Exception
         throw $instance;
     }
 
-    public function getErrors(){
+    public function getErrors() {
         return $this->errors;
     }
 
-    public function getOld(){
+    public function getOld() {
         return $this->old;
     }
 }

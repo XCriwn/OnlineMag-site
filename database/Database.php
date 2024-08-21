@@ -13,7 +13,8 @@ class Database{
         ]);
     }
 
-    public function query($query, $params=[]){
+    public function query($query, $params=[]): static
+    {
 
         $this->statement = $this->connection->prepare($query);
 
@@ -22,11 +23,11 @@ class Database{
         return $this; //fetch results as an associative array (no dupes)
     }
 
-    public function find(){
+    public function find() {
         return $this->statement->fetch();
     }
 
-    public function findAll(){
+    public function findAll() {
         return $this->statement->fetchAll();
     }
 
@@ -39,15 +40,4 @@ class Database{
 
         return $result;
     }
-
 }
-
-/*
-$id = $_GET['id'];
-$query = "select * from posts where id=:id";
-$posts = $db->query($query, [':id' => $id])->fetch(PDO::FETCH_ASSOC);
-dd($posts);
-foreach($posts as $post){
-    echo "<li>" . $post['title'] . "</li>";
-}
- */

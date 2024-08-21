@@ -10,7 +10,8 @@ class Validator{
         return !(strlen($value) > $min && strlen($value) < $max); // returns false if correct
     }
 
-    public static function isFloat($value) {
+    public static function isFloat($value): bool
+    {
         return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
     }
 
@@ -21,45 +22,28 @@ class Validator{
         return ($value > $min && $value < $max); // returns false if wrong, true if ok
     }
 
-    public static function hasMinMaxNoSpecialChars($value, $min = 0, $max = INF){
-        return !(self::hasSpecialChars($value) || self::notStringMinMax($value, $min, $max));
-    }
-
     public static function email($value): bool
     {
         if(str_contains($value, '@') && strlen($value) > 3) return false;
         else return true;
     }
 
-    public static function hasSpecialChars($value){
+    public static function hasSpecialChars($value): bool
+    {
         if(isNull($value) || $value === ""){return false;}
         return specialChars($value);
     }
 
-    public static function phone_number($value){
+    public static function phone_number($value): bool
+    {
         return self::notStringMinMax($value, -1, 11) && hasOnlyDigits($value);
     }
 
-    public static function priceIsValid($value, $min, $max){
-        if(str_contains($value, '.')){
-            $parts = explode('.', $value);
-            $digitsAfterDot = strlen($parts[1]);
-            $digitsBeforeDot = strlen($parts[0]);
-            if($digitsAfterDot > 2 || $digitsBeforeDot >$max || self::notStringMinMax($value, $min)){
-                return false;
-            }
-        }
-        else if(self::notStringMinMax($value, $min, $max)){
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function checkImage(){
+    public static function checkImage(): ?string
+    {
         //TODO image code goes here:
 
-        if($_FILES["image"]["name"] === ""){
+        if($_FILES["image"]["name"] === "") {
             return 'Please upload an image.';
         }
         $target_dir = "assets/img/";
@@ -101,7 +85,8 @@ class Validator{
 //TODO --end of image code--
     }
 
-    public static function addImage(){
+    public static function addImage(): ?string
+    {
         $target_dir = "assets/img/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]) . time();
         $errors['image'] = NULL;

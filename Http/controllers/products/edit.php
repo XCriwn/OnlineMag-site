@@ -7,10 +7,6 @@ $db = \core\App::resolve(\database\Database::class);
 
 authorize(getCurrentUserRole() === 'admin');
 
-//$product = $db->query("select * from product where id = :id", [
-//    'id'=>$_GET['id']
-//])->findOrFail(Response::NOT_FOUND);
-
 //todo we want to take from the database what categories we already have for this product id
 //todo and we want to put them in the selected-categories field
 
