@@ -68,6 +68,11 @@
         </div>
 
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <p class="mt-6">
+                <?php if(getCurrentUserRole() === 'admin') :?>
+                    <a href="product/create" class="text-red-100 hover:underline">Add new product</a>
+                <?php endif; ?>
+            </p>
             <ul><hr><br>
             <?php foreach ($products as $product):?>
                 <li>Name:
@@ -94,11 +99,6 @@
                 <br><hr><br>
             <?php endforeach; ?>
             </ul>
-            <p class="mt-6">
-                <?php if(getCurrentUserRole() === 'admin') :?>
-                <a href="product/create" class="text-red-100 hover:underline">Add new product</a>
-                <?php endif; ?>
-            </p>
         </div>
     </main>
 
