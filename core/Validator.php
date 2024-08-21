@@ -47,7 +47,8 @@ class Validator{
             return 'Please upload an image.';
         }
         $target_dir = "assets/img/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $fileInfo = pathinfo($_FILES["image"]["name"]);
+        $target_file = $target_dir . $fileInfo['filename'] . time() . "." . $fileInfo['extension'];
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $errors['image'] = NULL;
 
@@ -88,14 +89,16 @@ class Validator{
     public static function addImage(): ?string
     {
         $target_dir = "assets/img/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]) . time();
+        $fileInfo = pathinfo($_FILES["image"]["name"]);
+        $target_file = $target_dir . $fileInfo['filename'] . time() . "." . $fileInfo['extension'];
+        $target_file_name = $fileInfo['filename'] . time() . "." . $fileInfo['extension'];
         $errors['image'] = NULL;
         // SAVE the image
         if($errors['image'] === NULL) if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            $_FILES["image"]["name"] = $target_file_name;
             return null;
         }
         return $errors['image'] = "Sorry, there was an error uploading your file.";
-
     }
 
 }
