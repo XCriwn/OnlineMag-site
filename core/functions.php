@@ -48,10 +48,16 @@ function hasOnlyDigits($str){
         return BASE_PATH . $path;
     }
 
-    function view($path, $attributes = []) {
+    function view($path, $attributes = [], $stylesheet = null) {
         extract($attributes);
 
-        require base_path('views/' . $path);
+        if ($stylesheet) {
+            echo '<link rel="stylesheet" type="text/css" href="' . $stylesheet . '">';
+        }
+
+        if($path !== NULL){
+            require base_path('views/' . $path);
+        }
     }
 
     function viewAndExit($path, $attributes = [])
