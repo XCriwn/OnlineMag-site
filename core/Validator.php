@@ -22,6 +22,15 @@ class Validator{
         return ($value > $min && $value < $max); // returns false if wrong, true if ok
     }
 
+    public static function hasMaxDecimals($number, $max_decimals): bool
+    {
+        $parts = explode('.', (string)$number);
+        if (count($parts) == 2) {
+            return strlen($parts[1]) <= $max_decimals;
+        }
+        return true;
+    }
+
     public static function email($value): bool
     {
         if(str_contains($value, '@') && strlen($value) > 3) return false;
@@ -100,5 +109,7 @@ class Validator{
         }
         return $errors['image'] = "Sorry, there was an error uploading your file.";
     }
+
+
 
 }

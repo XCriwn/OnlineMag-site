@@ -34,6 +34,9 @@ if(Validator::notStringMinMax($_POST['description'], 0, 1000)) {
 if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)) {
     $errors['price'] = 'Price should be between 0 and 1 million.';
 }
+if(!Validator::hasMaxDecimals($_POST['price'], 2)) {
+    $errors['price'] = 'Price should have no more than 2 decimals.';
+}
 
 $selectedCategories = array_map('trim', explode(',', $_POST['selected_categories']));
 if (hasDuplicates($selectedCategories)) {
