@@ -1,0 +1,44 @@
+
+.filter-group {
+    margin-bottom: 1rem;
+}
+
+.filter-group label,
+.filter-group input,
+.filter-group select {
+    display: inline-block;
+    vertical-align: middle;
+}
+.filter-group input,
+.filter-group select {
+    margin-left: 10px;
+}
+/*todo we might put these into a separate stylesheet, loaded at start, for all pages to use*/
+.small-input {
+    width: 90px; /* Adjust the width to be smaller */
+    height: 30px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between products as needed */
+}
+
+.product-item {
+    flex: 1 1 calc(25% - 20px); /* Adjust the percentage to control the number of items per row */
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100px;
+    height: auto;
+}
+
+body {
+    background-color: lightblue;
+}

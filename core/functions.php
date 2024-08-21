@@ -51,8 +51,10 @@ function hasOnlyDigits($str){
     function view($path, $attributes = [], $stylesheet = null) {
         extract($attributes);
 
-        if ($stylesheet) {
+        if ($stylesheet !== NULL) {
+            $stylesheet = '/view/' . $stylesheet;
             echo '<link rel="stylesheet" type="text/css" href="' . $stylesheet . '">';
+            //dd($stylesheet);
         }
 
         if($path !== NULL){

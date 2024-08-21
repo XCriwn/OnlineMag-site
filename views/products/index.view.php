@@ -1,7 +1,54 @@
 <?php view('partials/head.php'); ?>
 <?php view('partials/nav.php', ['header' => $header]); ?>
-<?php view(null, [], 'products/index.view.css') ?>
+<?php //view(null, [], 'products/index.view.css') ?>
 
+<style>
+
+    .filter-group {
+        margin-bottom: 1rem;
+    }
+
+    .filter-group label,
+    .filter-group input,
+    .filter-group select {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .filter-group input,
+    .filter-group select {
+        margin-left: 10px;
+    }
+    /*todo we might put these into a separate stylesheet, loaded at start, for all pages to use*/
+    .small-input {
+        width: 90px; /* Adjust the width to be smaller */
+        height: 30px;
+    }
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Adjust the gap between products as needed */
+    }
+
+    .product-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align items horizontally */
+        justify-content: center; /* Center align items vertically */
+        flex: 1 1 calc(25% - 20px);
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .product-item img {
+        max-width: 100px;
+        height: auto;
+    }
+
+</style>
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <button id="toggle-filters" class="rounded-md bg-blue-600 ml-5 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500">Display Filters</button>
@@ -51,31 +98,23 @@
                     <a href="product/create" class="text-red-100 hover:underline">Add new product</a>
                 <?php endif; ?>
             </p>
-            <ul><hr><br>
-            <?php foreach ($products as $product):?>
-                <li>Name:
-                    <a href="/product?id=<?= $product['id']?>" class="text-red-300 hover:underline">
-                    <?= htmlspecialchars($product['name'])?>
-                    </a>
-                </li>
-                <img src="<?= getImage($product['image']); ?>" alt="Something went wrong." height="100px" width="100px">
-
-                <li>Description: <?= htmlspecialchars($product['description'])?></li>
-                <li>Price: <?= htmlspecialchars($product['price'])?>$</li>
-                <li>Categories: <?= isset($product['category_names']) ? htmlspecialchars($product['category_names']) : "None"?></li>
-
-                <li>
-                    <a href="/product?id=<?= $product['id']?>" class="text-red-300 hover:underline">
-                        See more...
-                    </a>
-                </li>
-                <?php if(getCurrentUserRole() === 'admin') :?>
-                    <footer class="mt-6">
-                        <a href="product/edit?id=<?= $product['id'] ?>" class="text-green-300 text-xs mt-6 border border-current rounded px-4 py-2">Edit</a>
-                    </footer>
-                <?php endif; ?>
-                <br><hr><br>
-            <?php endforeach; ?>
+            <br><hr><br>
+            <ul class="product-list">
+                <?php foreach ($products as $product): ?>
+                    <li class="product-item">
+                        <p>Name: <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline"><?= htmlspecialchars($product['name']) ?></a></p>
+                        <img src="<?= getImage($product['image']); ?>" alt="Something went wrong.">
+                        <p>Description: <?= htmlspecialchars($product['description']) ?></p>
+                        <p>Price: <?= htmlspecialchars($product['price']) ?>$</p>
+                        <p>Categories: <?= isset($product['category_names']) ? htmlspecialchars($product['category_names']) : "None" ?></p>
+                        <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline">See more...</a>
+                        <?php if (getCurrentUserRole() === 'admin') : ?>
+                            <footer class="mt-6">
+                                <a href="product/edit?id=<?= $product['id'] ?>" class="text-green-300 text-xs mt-6 border border-current rounded px-4 py-2">Edit</a>
+                            </footer>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </main>
