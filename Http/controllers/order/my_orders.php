@@ -6,7 +6,7 @@ $orders = $db->query("SELECT * FROM `order` WHERE user_id = :user_id AND status 
     'user_id' => getCurrentUserId()
 ])->findAll();
 
-authorize(getCurrentUserId() !== NULL); //TODO improve security here
+authorize(getCurrentUserId() !== NULL);
 
 view('order/my_orders.view.php', [
     'header' => 'Your Orders',

@@ -23,6 +23,10 @@ $db->query('UPDATE users SET first_name = :first_name, last_name = :last_name, e
     'id' => getCurrentUserId()
 ]);
 
+$profile = $db->query("SELECT * FROM users WHERE id = :id", [
+    'id'=>getCurrentUserId()
+])->findOrFail(Response::NOT_FOUND);
+
 view('profile/profile_view.php', [
     'profile' => $profile,
     'header' => 'My Profile',
