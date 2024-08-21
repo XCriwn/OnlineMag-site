@@ -7,10 +7,14 @@ require base_path('core/Validator.php');
 
 $db = \core\App::resolve(\database\Database::class);
 
-$product_count = $db->query("SELECT product_count FROM order_products WHERE order_id = :order_id AND product_id = :product_id", [
+
+
+$product_count = $db->query("SELECT p.product_count, o.user_id FROM `order_products` p JOIN `order` o ON p.order_id = o.id WHERE order_id = :order_id AND product_id = :product_id", [
     "product_id" => $_POST['id'],
     "order_id" => $_POST['order_id']
 ])->find();
+
+authorize(getCurrentUserId() === $product_count['user_id']);
 
 justDump( $product_count['product_count']);
 //dd($_POST['quantity']);

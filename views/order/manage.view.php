@@ -41,6 +41,16 @@
                 <li>Order number:
                     <?= htmlspecialchars($order['id'])?>
                 </li>
+                <li>Client details:</li>
+                <li>
+                    Full name: <?= htmlspecialchars($order['last_name']) . " " . htmlspecialchars($order['first_name'])?>
+                </li>
+                <li>
+                    Email: <?= htmlspecialchars($order['email'])?>
+                </li>
+                <li>
+                    Country: <?= !empty(htmlspecialchars($order['country'])) ? htmlspecialchars($order['country']) : "-"?>, State: <?= !empty(htmlspecialchars($order['state'])) ? htmlspecialchars($order['state']) : "-"?>, City: <?= !empty(htmlspecialchars($order['city'])) ? htmlspecialchars($order['city']) : "-"?>, Street: <?= !empty(htmlspecialchars($order['street'])) ? htmlspecialchars($order['street']) : "-"?>
+                </li>
                 <li>Status: <?= htmlspecialchars($order['status'])?></li>
                 <li>
                     <form action="/my_order" method="get">

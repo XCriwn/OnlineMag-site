@@ -4,10 +4,11 @@ $db = \core\App::resolve(\database\Database::class);
 
 if(!isset($_GET) || empty($_GET['order_id'])) redirect('/my_orders');
 
-$orders = $db->query("SELECT * FROM `order` WHERE id = :order_id AND status != 'INCOMPLETE'",[
+$orders = $db->query("SELECT o.*, u.id as user_id, u.first_name, u.last_name, u.email, u.country, u.state, u.city, u.street  FROM `order` o JOIN `users` u ON o.user_id = u.id WHERE o.id = :order_id AND o.status != 'INCOMPLETE'",[
     'order_id' => $_GET['order_id']
 ])->find();
 
+authorize($orders !== false);
 authorize(getCurrentUserId() === $orders['user_id'] || getCurrentUserRole() === 'admin');
 
 $product = [];

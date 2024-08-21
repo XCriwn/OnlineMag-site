@@ -15,9 +15,11 @@ if($order_id === false) {
     $order_id = getCurrentOrderId();
 }
 
-$status = $db->query("SELECT status FROM `order` WHERE id = :order_id", [
+$status = $db->query("SELECT user_id, status FROM `order` WHERE id = :order_id", [
     "order_id" => $order_id['id']
 ])->find();
+
+authorize($status['user_id'] === getCurrentUserId());
 
 if($status !== "INCOMPLETE"){
     createNewOrderId();
