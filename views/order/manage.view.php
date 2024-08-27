@@ -9,8 +9,8 @@
             <form action="/manage" method="post">
                 <h3>Filter by: </h3>
                 <div class="filter-group">
-                    <label for="filter" class="block text-sm font-medium leading-6 text-gray-900">Status:</label>
-                    <select id="filter" name="filter" class="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    <label for="filter" class="block text-sm font-medium leading-6">Status:</label>
+                    <select id="filter" name="filter" class="rounded-md input_class"> <!--  -->
                         <option value="0">None</option>
                         <option value="PENDING">PENDING</option>
                         <option value="CANCELLED">CANCELLED</option>
@@ -63,7 +63,7 @@
                     <form action="/update_status" method="post">
                         <input type="hidden" name="_method" value="PATCH">
                         <input type="hidden" name="order_id" value="<?=$order['id']?>">
-                        <select name="status">
+                        <select name="status" class="input_class">
                             <option value="PENDING">Pending</option>
                             <option value="CANCELLED">Cancelled</option>
                             <option value="COMPLETED">Completed</option>

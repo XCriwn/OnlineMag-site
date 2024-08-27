@@ -4,9 +4,9 @@
 
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <p>Hello, <?= $_SESSION['user']['email'] ?? 'Guest' ?>.</p>
-        <p>Your role is: <?=getCurrentUserRole() ?? 'undefined'?>.</p>
-        <p>Your id is: <?= getCurrentUserId() ?? 'undefined'?>.</p><br>
+        <p>Hello, <?= $_SESSION['user']['email'] ?? 'Guest' ?>.</p> <br>
+<!--        <p>Your role is: --><?php //=getCurrentUserRole() ?? 'undefined'?><!--.</p>-->
+<!--        <p>Your id is: --><?php //= getCurrentUserId() ?? 'undefined'?><!--.</p><br>-->
         <h1><strong>These are our newest products:</strong></h1>
     </div>
 

@@ -33,9 +33,9 @@
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <a href="/my_orders" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >Go to my previous orders.</a><br><br>
-            <p>Hello, <?= $_SESSION['user']['email'] ?? 'Guest' ?>. These are your profile data:</p>
-            <p>Your role is: <?=getCurrentUserRole() ?? 'undefined'?>.</p>
-            <p>Your id is: <?= getCurrentUserId() ?? 'undefined'?>.</p>
+            <p>Hello, <?= $_SESSION['user']['email'] ?? 'Guest' ?>.<br> These are your profile data:</p>
+            <!--            <p>Your role is: --><?php //=getCurrentUserRole() ?? 'undefined'?><!--.</p>-->
+<!--            <p>Your id is: --><?php //= getCurrentUserId() ?? 'undefined'?><!--.</p>-->
         </div>
 
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

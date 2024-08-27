@@ -57,19 +57,19 @@
 
                     <h3>Filter by: </h3>
                     <div class="filter-group">
-                        <label for="filter_name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
+                        <label for="filter_name" class="block text-sm font-medium leading-6">Name:</label>
                         <input name="filter_name" id="filter_name" type="text" value="<?= \core\Session::getArrayKey("old_post", "filter_name") ?>" class="small-input">
                     </div>
                     <div class="filter-group">
-                        <label for="filter_price_min" class="block text-sm font-medium leading-6 text-gray-900">Min Price:</label>
+                        <label for="filter_price_min" class="block text-sm font-medium leading-6">Min Price:</label>
                         <input name="filter_price_min" id="filter_price_min" type="text" value="<?= \core\Session::getArrayKey("old_post", "filter_price_min") ?>" class="small-input">
                     </div>
                     <div class="filter-group">
-                        <label for="filter_price_max" class="block text-sm font-medium leading-6 text-gray-900">Max Price:</label>
+                        <label for="filter_price_max" class="block text-sm font-medium leading-6">Max Price:</label>
                         <input name="filter_price_max" id="filter_price_max" type="text" value="<?= \core\Session::getArrayKey("old_post", "filter_price_max") ?>" class="small-input">
                     </div>
                     <div class="filter-group">
-                        <label for="filter_category" class="block text-sm font-medium leading-6 text-gray-900">Category:</label>
+                        <label for="filter_category" class="block text-sm font-medium leading-6">Category:</label>
                         <select id="filter_category" name="filter_category" class="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <option value="0">None</option>
                             <?php foreach($categories as $category): ?>

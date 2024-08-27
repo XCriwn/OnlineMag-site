@@ -14,35 +14,36 @@
                     <div class="border-b border-gray-900/10 pb-12">
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="col-span-full">
-                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
+                                <label for="name" class="block text-sm font-medium leading-6 ">Name:</label>
                                 <div class="mt-2">
                                     <input
                                             id="name"
                                             name="name"
+                                            type="text"
                                             value="<?= $product['name'] ?>"
                                             placeholder="Write here the name of the item..."
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     >
 
                                     <?php if(isset($errors['name'])) : ?>
                                     <p class="text-red-500 text-xs mt-2"><?= $errors['name']?></p>
                                     <?php endif; ?>
                                 </div>
-                                <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description:</label>
+                                <label for="description" class="block text-sm font-medium leading-6">Description:</label>
                                 <div class="mt-2">
                                     <textarea
                                             id="description"
                                             name="description"
                                             rows="3"
                                             placeholder="Write here the description of the item..."
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            class="textarea_class block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     ><?= $product['description'] ?></textarea>
 
                                     <?php if(isset($errors['description'])) : ?>
                                         <p class="text-red-500 text-xs mt-2"><?= $errors['description']?></p>
                                     <?php endif; ?>
                                 </div>
-                                <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price:</label>
+                                <label for="price" class="block text-sm font-medium leading-6 ">Price:</label>
                                 <div class="mt-2">
                                     <input
                                             id="price"
@@ -51,7 +52,7 @@
                                             step="0.01"
                                             value="<?= $product['price'] ?>"
                                             placeholder="Write here the price of the item..."
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     >
 
                                     <?php if(isset($errors['price'])) : ?>

@@ -18,11 +18,12 @@
                 Country: <?= !empty(htmlspecialchars($orders['country'])) ? htmlspecialchars($orders['country']) : "-"?>, State: <?= !empty(htmlspecialchars($orders['state'])) ? htmlspecialchars($orders['state']) : "-"?>, City: <?= !empty(htmlspecialchars($orders['city'])) ? htmlspecialchars($orders['city']) : "-"?>, Street: <?= !empty(htmlspecialchars($orders['street'])) ? htmlspecialchars($orders['street']) : "-"?>
             </li>
         </ul>
+        <br>
         <?php if(getCurrentUserRole() === 'admin') : ?>
         <form action="/update_status" method="post">
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="order_id" value="<?=$orders['id']?>">
-            <select name="status">
+            <select name="status" class="input_class">
                 <option value="PENDING">Pending</option>
                 <option value="CANCELLED">Cancelled</option>
                 <option value="COMPLETED">Completed</option>
