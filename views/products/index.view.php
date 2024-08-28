@@ -44,8 +44,8 @@
     }
 
     .product-item img {
-        max-width: 100px;
-        height: auto;
+        width: 250px;
+        height: 250px;
     }
 
 </style>
@@ -90,6 +90,13 @@
                     </button>
                 </form>
             </div>
+            <div><br>
+                <?php if(\core\Session::get("index_products_filter") === 1) : ?>
+                <p>Now sorting by: <?php foreach($categories as $category): if($category['id'] == \core\Session::getArrayKey("old_post", "filter_category")) :?> <?= $category['name'] ?> <?php endif; endforeach;?> </p>
+                <?php else : ?>
+                <p>No category sorting filters active.</p>
+                <?php endif; ?>
+            </div>
         </div>
 
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -102,11 +109,9 @@
             <ul class="product-list">
                 <?php foreach ($products as $product): ?>
                     <li class="product-item">
-                        <p>Name: <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline"><?= htmlspecialchars($product['name']) ?></a></p>
-                        <img src="<?= getImage($product['image']); ?>" alt="Something went wrong.">
-                        <p>Description: <?= htmlspecialchars($product['description']) ?></p>
-                        <p>Price: <?= htmlspecialchars($product['price']) ?>$</p>
-                        <p>Categories: <?= isset($product['category_names']) ? htmlspecialchars($product['category_names']) : "None" ?></p>
+                        <img src="<?= getImage($product['image']); ?>" alt="Something went wrong."> <br>
+                        <h3>Name: <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline"><?= htmlspecialchars($product['name']) ?></a></h3>
+                        <h4>Price: <?= htmlspecialchars($product['price']) ?>$</h4>
                         <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline">See more...</a>
                         <?php if (getCurrentUserRole() === 'admin') : ?>
                             <footer class="mt-6">
