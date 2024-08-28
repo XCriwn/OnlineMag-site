@@ -40,12 +40,31 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
         }
 
         .product-item img {
-            width: 250px;
-            height: auto;
-            max-height: 250px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .product-item .content {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            transform: translateX(-10%);
+            z-index: 1;
+            color: black;!important; /* Ensure text is visible on top of the image */
+            background: rgba(0, 0, 0, 0.7); /* Optional: semi-transparent background for better readability */
+            padding: 10px;
         }
 
     </style>
@@ -62,15 +81,15 @@
         <ul class="product-list">
             <?php foreach ($products as $product): ?>
                 <li class="product-item">
-                    <img src="<?= getImage($product['image']); ?>" alt="Something went wrong."> <br>
-                    <h3>Name: <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline"><?= htmlspecialchars($product['name']) ?></a></h3>
-                    <h4>Price: <?= htmlspecialchars($product['price']) ?>$</h4>
-                    <a href="/product?id=<?= $product['id'] ?>" class="text-red-300 hover:underline">See more...</a>
-                    <?php if (getCurrentUserRole() === 'admin') : ?>
-                        <footer class="mt-6">
-                            <a href="product/edit?id=<?= $product['id'] ?>" class="text-green-300 text-xs mt-6 border border-current rounded px-4 py-2">Edit</a>
-                        </footer>
-                    <?php endif; ?>
+                    <a href="/product?id=<?= $product['id'] ?>" class="hover:underline"><img src="<?= getImage($product['image']); ?>" alt="Something went wrong."></a> <br>
+                    <div class="content">
+                        <h3><a href="/product?id=<?= $product['id'] ?>" class="hover:underline"><strong><?= htmlspecialchars($product['name']) ?></strong></a></h3>
+                        <h4><strong>Price: <?= htmlspecialchars($product['price']) ?>$</strong></h4>
+                        <?php if (getCurrentUserRole() === 'admin') : ?>
+                            <a href="product/edit?id=<?= $product['id'] ?>" class="pt-1 text-green-300 text-xs mt-6 border border-current rounded px-4 py-2">Edit</a>
+                        <?php endif; ?>
+
+                    </div>
                 </li>
             <?php endforeach; ?>
         </ul>
