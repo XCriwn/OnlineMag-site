@@ -4,9 +4,9 @@ $router->get('/', 'index.php');
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
 
-$router->get('/products', 'products/index.php')->only('auth');
-$router->post('/products', 'products/index.php')->only('auth');
-$router->get('/product', 'products/show.php')->only('auth');
+$router->get('/products', 'products/index.php');
+$router->post('/products', 'products/index.php');
+$router->get('/product', 'products/show.php');
 $router->get('/product/create', 'products/create.php')->only('auth');
 $router->post('/product/store', 'products/store.php')->only('auth');
 $router->get('/product/edit', 'products/edit.php')->only('auth');

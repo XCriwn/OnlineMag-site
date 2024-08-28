@@ -5,7 +5,8 @@ use database\Response;
 $db = \core\App::resolve(\database\Database::class);
 $currentUserId = getCurrentUserId();
 
-authorize(getCurrentUserRole() !== NULL && isset($_GET['id']));
+authorizeLogin();
+//authorize(getCurrentUserRole() !== NULL && isset($_GET['id']));
 
 $product = $db->query("SELECT 
     product.*, 

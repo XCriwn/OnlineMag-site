@@ -13,7 +13,6 @@ class Router{
             'method' => $method,
             'middleware' => null
         ];
-        // or we can use compact('uri','controller','method');
         return $this;
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-authorize(getCurrentUserRole() !== NULL);
+//authorize(getCurrentUserRole() !== NULL);
 
 
 $db = \core\App::resolve(\database\Database::class);

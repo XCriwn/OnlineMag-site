@@ -4,34 +4,41 @@ use database\Response;
 use core\Session;
 
 
-    function justDump($value){
+    function justDump($value) {
     echo "<pre>";
     var_dump($value);
     echo "</pre>";
     }
 
-    function dd($value){
+    function dd($value) {
         justDump($value);
         die();
     }
 
-    function urlIs($value){
+    function urlIs($value) {
         return $_SERVER["REQUEST_URI"] === $value;
     }
 
-    function abort($code = 404){
+    function abort($code = 404) {
         http_response_code($code);
         view("status_codes/{$code}.php");
         die();
     }
 
-    function authorize($condition){
+    function authorize($condition) {
         if(!$condition){
             abort(Response::FORBIDDEN);
         }
     }
 
-    function specialChars($str) {
+    function authorizeLogin() {
+        if(getCurrentUserId() === NULL){
+            abort(Response::NOT_LOGGED_IN);
+        }
+    }
+
+
+function specialChars($str) {
         return preg_match('/[^a-zA-Z0-9]/', $str) > 0;
     }
 
