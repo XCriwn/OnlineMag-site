@@ -45,7 +45,8 @@
 
     .product-item img {
         width: 250px;
-        height: 250px;
+        height: auto;
+        max-height: 250px;
     }
 
 </style>

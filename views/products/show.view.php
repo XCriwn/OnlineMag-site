@@ -4,9 +4,9 @@
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
+            <img src="<?= getImage($product['image']); ?>" alt="Something went wrong." height="auto" width="250px"> <br>
             <h3 class="text-red-300">Name: <?= htmlspecialchars($product['name'])?></h3>
-            <img src="<?= getImage($product['image']); ?>" alt="Something went wrong." height="100px" width="100px">
-            <p>Description: <?= htmlspecialchars($product['description'])?></p>
+            <p>Description: <?= htmlspecialchars($product['description'])?></p> <br>
             <p>Price: <?= htmlspecialchars($product['price'])?>$</p>
 
             <p>Categories: <?= isset($product['category_names']) ? htmlspecialchars($product['category_names']) : "None"?></p>
