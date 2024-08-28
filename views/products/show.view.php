@@ -1,10 +1,18 @@
 <?php view('partials/head.php'); ?>
 <?php view('partials/nav.php', ['header' => $header]); ?>
 
+    <style>
+        img {
+            width: 250px;
+            height: auto;
+            max-height: 300px;
+        }
+    </style>
+
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
-            <img src="<?= getImage($product['image']); ?>" alt="Something went wrong." height="auto" width="250px"> <br>
+            <img src="<?= getImage($product['image']); ?>" alt="Something went wrong."> <br>
             <h3 class="text-red-300">Name: <?= htmlspecialchars($product['name'])?></h3>
             <p>Description: <?= htmlspecialchars($product['description'])?></p> <br>
             <p>Price: <?= htmlspecialchars($product['price'])?>$</p>
