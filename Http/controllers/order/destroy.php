@@ -14,7 +14,7 @@ $product_count = $db->query("SELECT p.product_count, o.user_id FROM `order_produ
 authorize(getCurrentUserId() === $product_count['user_id']);
 
 if(!Validator::isPositiveInteger($_POST['quantity'])) {
-    $errors['quantity'] = 'Quantity should be between 0 and all items currently in cart.';
+    $errors['quantity'] = 'Quantity should an integer higher than 0.';
 }
 
 if(!empty($errors)) {
