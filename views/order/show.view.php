@@ -35,6 +35,9 @@
                         <input type="number" id="quantity" name="quantity" min="1" value="1" class="rounded-md border-gray-300 px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >Remove from cart</button>
+                        <?php if(isset($errors['quantity'])) : ?>
+                            <p class="text-red-500 text-xs mt-2"><?= $errors['quantity']?></p>
+                        <?php endif; ?>
                     </form> <br>
                     <form action="/cart" method="post">
                         <input type="hidden" name="_method" value="DELETE">

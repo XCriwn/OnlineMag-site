@@ -7,6 +7,7 @@ $currentUserId = getCurrentUserId();
 
 authorizeLogin();
 //authorize(getCurrentUserRole() !== NULL && isset($_GET['id']));
+$errors = [];
 
 $product = $db->query("SELECT 
     product.*, 
@@ -27,5 +28,6 @@ GROUP BY
 view('products/show.view.php', [
     'product' => $product,
     'header' => 'Product',
+    'errors' => $errors
 ]);
 

@@ -15,6 +15,11 @@ class Validator{
         return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
     }
 
+    public static function isPositiveInteger($value): bool
+    {
+        return filter_var($value, FILTER_VALIDATE_INT) !== false && $value > 0;
+    }
+
     public static function isFloatMinMax($value, $min = 0, $max = INF): bool
     {
         $value = trim($value);

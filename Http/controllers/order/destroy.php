@@ -1,5 +1,6 @@
 <?php
 use core\Validator;
+use database\Response;
 
 require base_path('core/Validator.php');
 
@@ -12,7 +13,52 @@ $product_count = $db->query("SELECT p.product_count, o.user_id FROM `order_produ
 
 authorize(getCurrentUserId() === $product_count['user_id']);
 
-justDump( $product_count['product_count']);
+if(!Validator::isPositiveInteger($_POST['quantity'])) {
+    $errors['quantity'] = 'Quantity should be between 0 and all items currently in cart.';
+}
+
+if(!empty($errors)) {
+
+    $order_id = getCurrentOrderId();
+
+    if($order_id !== false) {
+
+        $product = $db->query("SELECT 
+    product.*, 
+    GROUP_CONCAT(DISTINCT categories.name SEPARATOR ', ') AS category_names,
+    ANY_VALUE(order_products.product_count) AS item_count
+FROM 
+    product
+LEFT JOIN 
+    product_categories ON product.id = product_categories.product_id
+LEFT JOIN 
+    categories ON product_categories.category_id = categories.id
+JOIN
+    order_products ON product.id = order_products.product_id
+JOIN
+    `order` ON order_products.order_id = `order`.id
+WHERE 
+    order_products.order_id = :order_id AND `order`.status = 'INCOMPLETE'
+GROUP BY
+    product.id
+", [
+            'order_id' => $order_id['id']
+        ])->findAll();
+    }
+    else{
+        $product = [];
+    }
+
+    view('order/show.view.php', [
+        'header' => 'Your Cart',
+        'products' => $product,
+        'order_id' => $order_id,
+        'errors' => $errors
+    ]);
+    die();
+}
+
+//justDump( $product_count['product_count']);
 
 if($product_count['product_count'] - $_POST['quantity'] > 0) {
     $db->query("UPDATE `order_products` SET `product_count` = :product_count WHERE product_id = :product_id AND order_id = :order_id", [

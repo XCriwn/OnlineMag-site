@@ -28,7 +28,9 @@
                     <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >Add to cart</button>
                 </form>
-
+                <?php if(isset($errors['quantity'])) : ?>
+                    <p class="text-red-500 text-xs mt-2"><?= $errors['quantity']?></p>
+                <?php endif; ?>
             <?php else : ?>
 
             <p>Log in to add to cart.</p>

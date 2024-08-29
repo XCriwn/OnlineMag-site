@@ -9,14 +9,14 @@ $errors = [];
 
 authorize(getCurrentUserRole() === 'admin');
 
-if(Validator::notStringMinMax($_POST['name'], 0, 1000)) {
-    $errors['name'] = 'A body of no more than 1000 characters is required.';
+if(Validator::notStringMinMax($_POST['name'], 0, 100)) {
+    $errors['name'] = 'A name of no more than 100 characters is required.';
 }
 if(Validator::notStringMinMax($_POST['description'], 0, 1000)) {
     $errors['description'] = 'A body of no more than 1000 characters is required.';
 }
 if(!Validator::isFloatMinMax($_POST['price'], 0, 999999999)) {
-    $errors['price'] = 'A price of no more than 1 million is required.';
+    $errors['price'] = 'A price between 0 and 1 million is required.';
 }
 if(!Validator::hasMaxDecimals($_POST['price'], 2)) {
     $errors['price'] = 'Price should have no more than 2 decimals.';

@@ -1,6 +1,7 @@
 <?php
 
 use core\Validator;
+use database\Response;
 
 require base_path('core/Validator.php');
 
@@ -10,6 +11,36 @@ $errors = [];
 
 //authorize the user
 authorize(getCurrentUserId() !== null);
+
+if(!Validator::isPositiveInteger($_POST['quantity'], 0, 999999999)) {
+    $errors['quantity'] = 'Quantity should be between 0 and 1 million.';
+}
+
+if(!empty($errors)) {
+
+    $product = $db->query("SELECT 
+    product.*, 
+    GROUP_CONCAT(categories.name SEPARATOR ', ') AS category_names
+FROM 
+    product
+LEFT JOIN 
+    product_categories ON product.id = product_categories.product_id
+LEFT JOIN 
+    categories ON product_categories.category_id = categories.id
+WHERE 
+    product.id = :id
+GROUP BY 
+    product.id;", [
+        'id'=>$_POST['id']
+    ])->findOrFail(Response::NOT_FOUND);
+
+    view('products/show.view.php', [
+        'product' => $product,
+        'header' => 'Product',
+        'errors' => $errors
+    ]);
+    die();
+}
 
 $order_id = getCurrentOrderId();
 
